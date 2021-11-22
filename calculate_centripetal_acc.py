@@ -67,6 +67,7 @@ def calculate_centripetal_acc(file):
     plt.ylabel('Centripetal Acceleration')
     file_name = file.split('/')
     plt.title(file_name[1])
+    
     plt.show()  
 
 if __name__ == '__main__':
