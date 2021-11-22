@@ -95,11 +95,18 @@ def calculate_centripetal_acc(file):
     # Show plot
     plt.show() 
 
+    # Calculate radians
+    radians_expression = (math.pi / 180) 
+    angle_radians_arr = np.multiply(angle_arr, radians_expression)
+
     # Create new dataframe with centripetal acceleration and angles
-    result_df = pd.DataFrame({'Centripetal_Acceleration': acceleration_arr, 'Angle_Degrees': angle_arr})
+    result_df = pd.DataFrame({
+                    'Centripetal_Acceleration': acceleration_arr, 
+                    'Angle_Degrees': angle_arr, 
+                    'Angle_Radians': angle_radians_arr})
     
     try:
-        answer = input('\nDo you wish to save the result data? (y / n): ')
+        answer = input('\nDo you wish to save the result data? (y / n): ').strip()
 
         if answer == 'y':
 
@@ -120,7 +127,7 @@ def calculate_centripetal_acc(file):
 
 if __name__ == '__main__':
     try: 
-        file_path = input('\nSupply the file path that you want to use: ')
+        file_path = input('\nSupply the file path that you want to use: ').strip()
         calculate_centripetal_acc(file_path)
     except Exception as e:
         print(e)
