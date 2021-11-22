@@ -28,7 +28,6 @@ def calculate_centripetal_acc(file):
     3. squaring its magnitude and dividing by the radius (v^2 / r)
 
     Furthermore, we can calculate the angle between the two vectors using the dot product.
-
     """
 
     # Get first and last row of dataset 
@@ -97,7 +96,7 @@ def calculate_centripetal_acc(file):
     plt.show() 
 
     # Create new dataframe with centripetal acceleration and angles
-    result_df = pd.DataFrame({'centripetal_acceleration': acceleration_arr, 'angle': angle_arr})
+    result_df = pd.DataFrame({'Centripetal_Acceleration': acceleration_arr, 'Angle_Degrees': angle_arr})
     
     try:
         answer = input('\nDo you wish to save the result data? (y / n): ')
@@ -105,7 +104,7 @@ def calculate_centripetal_acc(file):
         if answer == 'y':
 
             result_file_name = input("\nProvide a file name for the result data (do not include the 'csv' file extension): ")
-            result_df.to_csv(f'./result_divedata/{result_file_name}.csv')
+            result_df.to_csv(f'{result_file_name}.csv', index=False)
 
             print(f'\n{result_file_name} created successfully...Exiting\n')
             sys.exit()
@@ -120,4 +119,8 @@ def calculate_centripetal_acc(file):
         print(e)
 
 if __name__ == '__main__':
-    calculate_centripetal_acc(f'cleaned_divedata/cleaned_divedata_3.csv')
+    try: 
+        file_path = input('\nSupply the file path that you want to use: ')
+        calculate_centripetal_acc(file_path)
+    except Exception as e:
+        print(e)
