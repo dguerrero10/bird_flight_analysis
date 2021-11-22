@@ -18,8 +18,8 @@ def calculate_centripetal_acc(file):
     whose diameter is defined by the magnitude of the first and last vector of the dataset.
     However, we really just want to know the coordinates of the sphere's center, because we can then use that
     to find the sphere's radius. We can find the center of a sphere using the midpoint formula.
-    After we have sphere's center, we can use it's coordinates to find the radius.
-    The radius is simply the distance between the center of the sphere and some other point on its surface,
+    After we have the sphere's center, we can use it's coordinates to find the radius.
+    The radius is simply the distance between the center of the sphere and any other point on its surface,
     thus we can use the distance formula to compute it. Once we know the sphere's radius, we can calculate
     the centripetal acceleration by:
 
@@ -60,7 +60,7 @@ def calculate_centripetal_acc(file):
         # Get magnitude of velocity vector 
         vector_magnitude = np.linalg.norm(displacement_vect)
 
-        # centripetal acceleration = v**2 / radius
+        # centripetal acceleration = v^2 / radius
         a_c = (vector_magnitude ** 2) / radius   
         acceleration_arr.append(a_c)
 
