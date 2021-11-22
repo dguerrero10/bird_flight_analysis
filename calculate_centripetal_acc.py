@@ -100,11 +100,21 @@ def calculate_centripetal_acc(file):
     result_df = pd.DataFrame({'centripetal_acceleration': acceleration_arr, 'angle': angle_arr})
     
     try:
-        result_file_name = input("\nProvide a file name for the result data (do not include the 'csv' file extension): ")
-        result_df.to_csv(f'./result_divedata/{result_file_name}.csv')
+        answer = input('\nDo you wish to save the result data? (y / n): ')
 
-        print(f'\n{result_file_name} created successfully...Exiting\n')
-        sys.exit()
+        if answer == 'y':
+
+            result_file_name = input("\nProvide a file name for the result data (do not include the 'csv' file extension): ")
+            result_df.to_csv(f'./result_divedata/{result_file_name}.csv')
+
+            print(f'\n{result_file_name} created successfully...Exiting\n')
+            sys.exit()
+        elif answer != 'n':
+            print('Command not found. Exiting...\n')
+            sys.exit()
+        else:
+            print('\nExiting...')
+            sys.exit()
 
     except Exception as e:
         print(e)
