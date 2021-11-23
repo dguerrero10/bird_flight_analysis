@@ -4,6 +4,7 @@ import sys
 def plot3D_data():
     try:
         import pandas as pd
+        import numpy as np
         from mpl_toolkits import mplot3d
         import matplotlib.pyplot as plt
     except:
@@ -15,14 +16,25 @@ def plot3D_data():
     try:
         for filename in os.listdir(os.getcwd()): 
             if filename.endswith('.csv'):
-                fig = plt.figure()
-                ax = plt.axes(projection='3d')
                 df = pd.read_csv(filename)
+
+                fig, ax = plt.subplots()
+                ax = plt.axes(projection='3d')
+
+                # Get first and last row of dataset 
+                vect1 = df.values[0].tolist()
+                vect2 = df.values[-1].tolist()
+
+                # Calulate center of sphere using the midpoint formula
+                added_vects = np.add(vect1, vect2)
+                midpoint = np.true_divide(added_vects, 2)
+
                 x_data = list(df['x'])
                 y_data = list(df['y'])
                 z_data = list(df['z'])
 
                 ax.plot3D(x_data, y_data, z_data, 'green')
+                ax.scatter(midpoint[0], midpoint[1], midpoint[2])
                 ax.set_title(filename)
                 plt.show()
         

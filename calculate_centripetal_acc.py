@@ -29,19 +29,9 @@ def calculate_centripetal_acc(file):
 
     Furthermore, we can calculate the angle between the two vectors using the dot product.
     """
-
-    # Get first and last row of dataset 
-    vect1 = df.values[0].tolist()
-    vect2 = df.values[-1].tolist()
-
-    # Calulate center of sphere using the midpoint formula
-    added_vects = np.add(vect1, vect2)
-    midpoint = np.true_divide(added_vects, 2)
-
-    # Calculate radius of sphere using the distance formula
-    radius = math.dist(midpoint, vect2)
+    
     vects = []
-
+    
     # Iterate through df rows and store vectors in array
     for _, row in df.iterrows():
         vect_i = [row['x'], row['y'], row['z']]
@@ -53,6 +43,13 @@ def calculate_centripetal_acc(file):
     for i in range(len(vects) -1):
         vect_i = np.array(vects[i])  
         vect_i_1 = np.array(vects[i + 1])
+
+        # Calulate center of sphere using the midpoint formula
+        added_vects = np.add(vect_i, vect_i_1)
+        midpoint = np.true_divide(added_vects, 2)
+
+        # Calculate radius of sphere using the distance formula
+        radius = math.dist(midpoint, vect_i)
 
         # Subtract vect_i from vector_i + 1 to get velocity vector
         displacement_vect = np.subtract(vect_i_1, vect_i)
@@ -127,7 +124,7 @@ def calculate_centripetal_acc(file):
 
 if __name__ == '__main__':
     try: 
-        file_path = input('\nSupply the file path that you want to use: ').strip()
-        calculate_centripetal_acc(file_path)
+        # file_path = input('\nSupply the file path that you want to use: ').strip()
+        calculate_centripetal_acc('./cleaned_divedata/cleaned_divedata_3.csv')
     except Exception as e:
         print(e)
